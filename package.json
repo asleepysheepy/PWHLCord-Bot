@@ -1,0 +1,22 @@
+{
+  "name": "pwhl-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && resolve-tspaths",
+    "fix": "biome check --fix .",
+    "lint": "biome lint .",
+    "start": "node -r dotenv/config ./build/index.js"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.4",
+    "@types/node": "^24.10.1",
+    "resolve-tspaths": "^0.8.23",
+    "typescript": "^5.5.3"
+  },
+  "private": true,
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}
