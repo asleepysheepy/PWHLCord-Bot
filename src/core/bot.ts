@@ -1,11 +1,19 @@
-import { type ClientOptions, Client as DiscordJsClient, GatewayIntentBits } from 'discord.js'
+import {
+  type ClientOptions,
+  Client as DiscordJsClient,
+  GatewayIntentBits,
+} from 'discord.js'
 import { logger } from '@/core/logger'
 import { env } from '@/env'
 import { events } from '@/events'
 
 class BotClass {
   static clientOptions: ClientOptions = {
-    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+    intents: [
+      GatewayIntentBits.Guilds,
+      GatewayIntentBits.GuildMessages,
+      GatewayIntentBits.MessageContent,
+    ],
   }
 
   /**
