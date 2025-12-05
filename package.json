@@ -18,6 +18,8 @@
   },
   "private": true,
   "dependencies": {
-    "discord.js": "^14.24.2"
+    "discord.js": "^14.24.2",
+    "pino": "^10.1.0",
+    "pino-pretty": "^13.1.2"
   }
 }

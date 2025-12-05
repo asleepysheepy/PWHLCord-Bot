@@ -1,4 +1,5 @@
 import { ActivityType, Events } from 'discord.js'
+import { logger } from '@/core/logger'
 import type { Event } from '@/models/event'
 
 /**
@@ -11,7 +12,7 @@ export const ReadyEvent: Event = {
   name: Events.ClientReady,
   once: true,
   execute: (client) => {
-    console.log(`Ready! Logged in as ${client.user.tag}`)
+    logger.info(`Ready! Logged in as ${client.user.tag}`)
 
     client.user.setActivity({ name: 'hockey', type: ActivityType.Watching })
   },

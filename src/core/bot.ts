@@ -1,4 +1,5 @@
 import { type ClientOptions, Client as DiscordJsClient, GatewayIntentBits } from 'discord.js'
+import { logger } from '@/core/logger'
 import { env } from '@/env'
 import { events } from '@/events'
 
@@ -23,17 +24,17 @@ class BotClass {
    * The main function that starts the bot.
    */
   async start(): Promise<void> {
-    console.log('Welcome to PWHLCord Bot!')
-    console.log('Starting PWHLCord Bot')
+    logger.info('Welcome to PWHLCord Bot!')
+    logger.info('Starting PWHLCord Bot')
 
     this.registerEvents()
 
     try {
       await this.login()
-      console.log('Successfully logged in to Discord.')
+      logger.info('Successfully logged in to Discord.')
     } catch (e) {
-      console.error('Unable to log in to discord.')
-      console.error(e)
+      logger.error('Unable to log in to discord.')
+      logger.error(e)
       process.exit()
     }
   }
@@ -61,7 +62,7 @@ class BotClass {
    */
   registerEvents() {
     events.forEach((event) => {
-      console.log('registering event handler for', event.name)
+      logger.info(`registering event handler for: ${event.name}`)
       this.client[event.once ? 'once' : 'on'](event.name, event.execute)
     })
   }
