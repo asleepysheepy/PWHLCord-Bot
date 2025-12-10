@@ -1,8 +1,4 @@
-import {
-  type ClientOptions,
-  Client as DiscordJsClient,
-  GatewayIntentBits,
-} from 'discord.js'
+import { type ClientOptions, Client as DiscordJsClient, GatewayIntentBits } from 'discord.js'
 import { logger } from '@/core/logger'
 import { env } from '@/env'
 import { events } from '@/events'
@@ -53,16 +49,6 @@ class BotClass {
    */
   async login(): Promise<void> {
     await this.client.login(env.BOT_TOKEN)
-  }
-
-  /**
-   * Checks if the bot client is currently logged into discord
-   * and able to make requests against Discord's API.
-   *
-   * @returns true if the bot is logged in to Discord
-   */
-  isLoggedIn(): boolean {
-    return this.client.isReady()
   }
 
   /**
