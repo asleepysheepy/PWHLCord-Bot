@@ -1,5 +1,6 @@
 interface EnvConfig {
   BOT_TOKEN: string
+  DATABASE_URL: string
 }
 
 function getEnvVar(key: string): string {
@@ -14,4 +15,5 @@ function getEnvVar(key: string): string {
 
 export const env: EnvConfig = {
   BOT_TOKEN: getEnvVar('BOT_TOKEN'),
+  DATABASE_URL: getEnvVar('DATABASE_URL'),
 }
