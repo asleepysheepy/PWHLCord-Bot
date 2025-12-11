@@ -1,8 +1,8 @@
 import type { Snowflake } from 'discord.js'
 import { pgTable, text } from 'drizzle-orm/pg-core'
-import { createdAt, snowflake, updatedAt } from '@/db/schemaHelpers'
+import { createdAt, snowflake, updatedAt } from '@/models/schema/schemaHelpers'
 
-export const GuildConfigTable = pgTable('guild', {
+export const GuildConfig = pgTable('guild', {
   id: snowflake.primaryKey().$type<Snowflake>(),
   createdAt,
   updatedAt,
