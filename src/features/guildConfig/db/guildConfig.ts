@@ -1,12 +1,12 @@
 import type { Snowflake } from 'discord.js'
 import { eq } from 'drizzle-orm'
-import { db } from '@/core/db'
-import { logger } from '@/core/logger'
-import { GuildConfig } from '@/models/schema'
+import { db } from '@/lib/db'
+import { logger } from '@/lib/logger'
+import { GuildConfigTable } from '@/models/schema'
 
 export async function createGuildConfig(guildId: Snowflake) {
   try {
-    await db.insert(GuildConfig).values({ id: guildId })
+    await db.insert(GuildConfigTable).values({ id: guildId })
 
     logger.info(`Created new guild config for guild with id ${guildId}`)
   } catch (error) {
@@ -17,7 +17,7 @@ export async function createGuildConfig(guildId: Snowflake) {
 
 export async function deleteGuildConfig(guildId: Snowflake) {
   try {
-    await db.delete(GuildConfig).where(eq(GuildConfig.id, guildId))
+    await db.delete(GuildConfigTable).where(eq(GuildConfigTable.id, guildId))
     logger.info(`Deleted guild config for ${guildId}`)
   } catch (error) {
     logger.error(`Error deleting guild config: ${guildId}`)
@@ -27,9 +27,9 @@ export async function deleteGuildConfig(guildId: Snowflake) {
 
 export async function getGuildPrefix(guildId: Snowflake): Promise<string | null> {
   const guildConfig = await db
-    .select({ prefix: GuildConfig.prefix })
-    .from(GuildConfig)
-    .where(eq(GuildConfig.id, guildId))
+    .select({ prefix: GuildConfigTable.prefix })
+    .from(GuildConfigTable)
+    .where(eq(GuildConfigTable.id, guildId))
 
   return guildConfig?.[0]?.prefix
 }

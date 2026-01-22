@@ -1,8 +1,8 @@
 import { type ClientOptions, Client as DiscordJsClient, GatewayIntentBits } from 'discord.js'
-import { env } from '@/core/env'
-import { logger } from '@/core/logger'
 import { events as GuildConfigEvents } from '@/features/guildConfig'
 import { events as UtilitiesEvents } from '@/features/utilities'
+import { env } from '@/lib/env'
+import { logger } from '@/lib/logger'
 
 const clientOptions: ClientOptions = {
   intents: [

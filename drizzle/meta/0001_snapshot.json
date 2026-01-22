@@ -1,0 +1,137 @@
+{
+  "id": "627fe6e6-a7c6-4e93-a888-da723a3f2a69",
+  "prevId": "35ece487-2100-4707-90b1-ed920adae860",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.birthday": {
+      "name": "birthday",
+      "schema": "",
+      "columns": {
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "guildId": {
+          "name": "guildId",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "userId": {
+          "name": "userId",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "birthMonth": {
+          "name": "birthMonth",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "birthDay": {
+          "name": "birthDay",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "birthday_guildId_userId_pk": {
+          "name": "birthday_guildId_userId_pk",
+          "columns": [
+            "guildId",
+            "userId"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.guild": {
+      "name": "guild",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(30)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "prefix": {
+          "name": "prefix",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "';'"
+        },
+        "birthdaysEnabled": {
+          "name": "birthdaysEnabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "birthdaysChannel": {
+          "name": "birthdaysChannel",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "birthdaysTime": {
+          "name": "birthdaysTime",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
