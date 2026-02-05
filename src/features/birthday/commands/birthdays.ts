@@ -1,4 +1,8 @@
-import { type ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js'
+import {
+  type ChatInputCommandInteraction,
+  InteractionContextType,
+  SlashCommandBuilder,
+} from 'discord.js'
 import { z } from 'zod'
 import { createBirthday, deleteBirthday } from '@/features/birthday/db/birthday'
 import { sendGenericErrorReply } from '@/lib/commandHelpers'
@@ -24,6 +28,7 @@ export const BirthdaysCommand = {
   data: new SlashCommandBuilder()
     .setName('birthdays')
     .setDescription('Birthday messages for the whole gang')
+    .setContexts(InteractionContextType.Guild)
     .addSubcommand((subcommand) =>
       subcommand
         .setName('add')

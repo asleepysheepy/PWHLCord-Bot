@@ -1,9 +1,10 @@
 import { REST, Routes } from 'discord.js'
 import { commands as birthdayCommands } from '@/features/birthday'
+import { commands as configCommands } from '@/features/guildConfig'
 import { env } from '@/lib/env'
 import { logger } from '@/lib/logger'
 
-const commands = [...birthdayCommands]
+const commands = [...birthdayCommands, ...configCommands]
 const commandData = commands.map((command) => command.data)
 
 const restClient = new REST().setToken(env.BOT_TOKEN)

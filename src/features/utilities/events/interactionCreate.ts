@@ -1,8 +1,11 @@
 import { Events } from 'discord.js'
 import { commands as birthdayCommands } from '@/features/birthday'
+import { commands as configCommands } from '@/features/guildConfig'
 import type { Event } from '@/models/event'
 
-const commands = new Map([...birthdayCommands].map((command) => [command.data.name, command]))
+const commands = new Map(
+  [...birthdayCommands, ...configCommands].map((command) => [command.data.name, command]),
+)
 
 export const InteractionCreate: Event = {
   name: Events.InteractionCreate,
