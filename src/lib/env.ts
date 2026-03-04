@@ -6,7 +6,7 @@ interface EnvConfig {
 }
 
 function getEnvVar(key: string): string {
-  const value = process.env[key]
+  const value = Bun.env[key]
 
   if (!value) {
     throw new Error(`Missing required environment variable: ${key}`)
@@ -19,5 +19,5 @@ export const env: EnvConfig = {
   APPLICATION_ID: getEnvVar('APPLICATION_ID'),
   BOT_TOKEN: getEnvVar('BOT_TOKEN'),
   DATABASE_URL: getEnvVar('DATABASE_URL'),
-  GUILD_ID: process.env.GUILD_ID,
+  GUILD_ID: Bun.env.GUILD_ID,
 }

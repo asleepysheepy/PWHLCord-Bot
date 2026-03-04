@@ -1,6 +1,4 @@
 import { type ClientOptions, Client as DiscordJsClient, GatewayIntentBits } from 'discord.js'
-import { events as GuildConfigEvents } from '@/features/guildConfig'
-import { events as UtilitiesEvents } from '@/features/utilities'
 import { env } from '@/lib/env'
 import { logger } from '@/lib/logger'
 
@@ -12,26 +10,11 @@ const clientOptions: ClientOptions = {
   ],
 }
 
-const events = {
-  guildConfig: GuildConfigEvents,
-  utilities: UtilitiesEvents,
-}
-
 async function startBot() {
   logger.info('Welcome to PWHLCord Bot!')
   logger.info('Starting PWHLCord Bot')
 
   const client = new DiscordJsClient(clientOptions)
-
-  // Register Events
-  Object.entries(events).forEach(([feature, events]) => {
-    logger.info(`Registering event handlers for: ${feature}`)
-
-    events.forEach((event) => {
-      logger.info(`\t${event.name}`)
-      client[event.once ? 'once' : 'on'](event.name, event.execute)
-    })
-  })
 
   // Attempt to log in
   try {
@@ -44,4 +27,8 @@ async function startBot() {
   }
 }
 
-startBot().catch((e) => logger.error(e))
+try {
+  await startBot()
+} catch (error) {
+  logger.error(error)
+}
