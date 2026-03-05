@@ -4,6 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "deployCommands": "bun ./src/deploy-commands.ts",
+    "deployCommands:dev": "bun run deployCommands --dev",
     "fix": "biome check --fix .",
     "start": "bun ./src/index.ts"
   },
