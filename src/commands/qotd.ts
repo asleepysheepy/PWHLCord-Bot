@@ -47,6 +47,13 @@ export const QotdCommand = {
       response = response.concat('\n\n', roleMention(role.id))
     }
 
-    await channel.send({ content: response })
+    try {
+      await channel.send({ content: response })
+    } catch {
+      interaction.editReply({
+        content:
+          'Unable to post the QOTD, please make sure I have permission to send messages in this channel.',
+      })
+    }
   },
 } satisfies Command
