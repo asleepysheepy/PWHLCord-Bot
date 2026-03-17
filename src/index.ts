@@ -1,7 +1,9 @@
+import { Cron } from 'croner'
 import { type ClientOptions, Client as DiscordJsClient, GatewayIntentBits } from 'discord.js'
 import { events } from '@/events'
 import { env } from '@/lib/env'
 import { logger } from '@/lib/logger'
+import { jobs } from './jobs'
 
 const clientOptions: ClientOptions = {
   intents: [
@@ -18,7 +20,7 @@ async function startBot() {
   const client = new DiscordJsClient(clientOptions)
 
   // Register Events
-  logger.info('Regestering Events:')
+  logger.info('Registering Events:')
   events.forEach((event) => {
     logger.info(`\t${event.name}`)
     client[event.once ? 'once' : 'on'](event.name, event.execute)
@@ -35,8 +37,18 @@ async function startBot() {
   }
 }
 
+function registerJobs() {
+  logger.info('Registering jobs:')
+
+  jobs.forEach((job) => {
+    logger.info(`\t${job.name}`)
+    new Cron(job.schedule, { name: job.name }, job.execute)
+  })
+}
+
 try {
   await startBot()
+  registerJobs()
 } catch (error) {
   logger.error(error)
 }

@@ -62,7 +62,7 @@ export const BirthdayCommand = {
     .toJSON(),
 
   execute: async (interaction) => {
-    const subcommand = interaction.options.getSubcommand(false)
+    const subcommand = interaction.options.getSubcommand(true)
     switch (subcommand) {
       case 'add':
         await add(interaction)

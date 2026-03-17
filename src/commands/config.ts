@@ -6,9 +6,9 @@ import {
   SlashCommandBuilder,
 } from 'discord.js'
 import { getGuildIdFromCommand, sendGenericErrorReply } from '@/lib/command-helpers'
+import { prisma } from '@/lib/db'
 import { logger } from '@/lib/logger'
 import type { Command } from '@/models/command'
-import { prisma } from '@/lib/db'
 
 export const ConfigCommand = {
   data: new SlashCommandBuilder()

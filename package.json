@@ -19,6 +19,7 @@
   "dependencies": {
     "@prisma/adapter-libsql": "^7.4.2",
     "@prisma/client": "^7.4.2",
+    "croner": "^10.0.1",
     "discord.js": "^14.25.1",
     "pino": "^10.3.1",
     "pino-pretty": "^13.1.3",

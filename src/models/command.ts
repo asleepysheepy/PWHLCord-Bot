@@ -16,6 +16,12 @@ export interface Command {
   data: RESTPostAPIApplicationCommandsJSONBody
 
   /**
+   * Whether the command should only be used for dev purposes. Prevents the
+   * command from being globally deployed.
+   */
+  devOnly?: boolean
+
+  /**
    * The function to run when the command is executed
    */
   execute: (interaction: ChatInputCommandInteraction) => Promise<void> | void
