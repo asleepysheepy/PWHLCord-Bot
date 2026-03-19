@@ -20,6 +20,6 @@ FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
 COPY . .
 
-# run the app
-# USER bun
+# run migratiosn then  start the app
+RUN bunx --bun prisma migrate deploy
 ENTRYPOINT [ "bun", "start" ]
