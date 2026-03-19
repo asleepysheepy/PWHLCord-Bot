@@ -38,9 +38,12 @@ export const SendBirthdayMessagesJob: Job = {
       const birthdayStrings = birthdays.map((birthday) => `* ${userMention(birthday.userId)}`)
       const message = [
         '# Happy Birthday!!!',
-        '🎂 🎉 🎂 💝 🎂 🎉 🎂\n',
+        '🎂 🎉 🎂 💝 🎂 🎉 🎂',
+        '\n',
         `**Birthdays for ${currentMonth} ${currentDay}**`,
         birthdayStrings.join('\n'),
+        '\n',
+        '-# Want your birthday listed too? Use `/birthday add` to add your birthday!',
       ].join('\n')
 
       restClient.post(Routes.channelMessages(guild.birthdaysChannel), {
