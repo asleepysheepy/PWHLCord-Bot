@@ -2,11 +2,14 @@ import { REST, Routes, userMention } from 'discord.js'
 import { prisma } from '@/lib/db'
 import { env } from '@/lib/env'
 import type { Job } from '@/models/job'
+import { logger } from '@/lib/logger'
 
 export const SendBirthdayMessagesJob: Job = {
   name: 'sendBirthdayMessages',
   schedule: '0 8 * * * ', // Every day at 0800
   execute: async () => {
+    logger.info('Starting birthday messages...')
+
     const currentDay = new Date().getDate()
     const currentMonth = new Intl.DateTimeFormat('en-US', {
       month: 'long',
@@ -19,6 +22,7 @@ export const SendBirthdayMessagesJob: Job = {
     })
 
     for (const guild of guilds) {
+      logger.info(`Birthday messages for: ${guild}`)
       if (guild.birthdaysChannel == null) {
         continue
       }

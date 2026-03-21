@@ -42,7 +42,7 @@ function registerJobs() {
 
   jobs.forEach((job) => {
     logger.info(`\t${job.name}`)
-    new Cron(job.schedule, { name: job.name }, job.execute)
+    new Cron(job.schedule, { name: job.name, timezone: 'America/New_York' }, job.execute)
   })
 }
 
